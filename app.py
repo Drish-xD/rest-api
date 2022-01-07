@@ -28,7 +28,7 @@ def random_quote():
 
 @app.route("/jokes")
 def jokes():
-    file = open("jokes.json", "r", encoding="utf8")
+    file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     return jsonify(jokes)
     file.close()
@@ -36,7 +36,7 @@ def jokes():
 
 @app.route("/jokes/random")
 def random_joke():
-    file = open("jokes.json", "r", encoding="utf8")
+    file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     return jsonify(random.choice(jokes))
     file.close()
@@ -44,7 +44,7 @@ def random_joke():
 
 @app.route("/jokes/mature")
 def jokes_by_mature():
-    file = open("jokes.json", "r", encoding="utf8")
+    file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     mature_jokes = [x for x in jokes if x['mature'] == True]
     return jsonify(mature_jokes)
