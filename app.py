@@ -34,5 +34,22 @@ def jokes():
     file.close()
 
 
+@app.route("/jokes/random")
+def random_joke():
+    file = open("jokes.json", "r", encoding="utf8")
+    jokes = json.load(file)
+    return jsonify(random.choice(jokes))
+    file.close()
+
+
+@app.route("/jokes/mature")
+def jokes_by_mature():
+    file = open("jokes.json", "r", encoding="utf8")
+    jokes = json.load(file)
+    mature_jokes = [x for x in jokes if x['mature'] == True]
+    return jsonify(mature_jokes)
+    file.close()
+
+
 if __name__ == '__main__':
     app.run(debug=False, port=2000)
