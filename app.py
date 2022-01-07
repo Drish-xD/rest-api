@@ -12,9 +12,17 @@ def hello_world():
 
 @app.route("/quotes")
 def quotes():
-    file = open("quotes.json", "r", encoding="utf8")
+    file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
     return jsonify(quotes)
+    file.close()
+
+
+@app.route("/quotes/random")
+def random_quote():
+    file = open("./Data/quotes.json", "r", encoding="utf8")
+    quotes = json.load(file)
+    return jsonify(random.choice(quotes))
     file.close()
 
 
