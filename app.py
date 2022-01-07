@@ -26,5 +26,13 @@ def random_quote():
     file.close()
 
 
+@app.route("/jokes")
+def jokes():
+    file = open("jokes.json", "r", encoding="utf8")
+    jokes = json.load(file)
+    return jsonify(jokes)
+    file.close()
+
+
 if __name__ == '__main__':
     app.run(debug=False, port=2000)
