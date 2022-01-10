@@ -15,6 +15,7 @@ Retrieves a list of quotes
 **GET** `/quotes`
 <details>
 <summary>Example Response</summary>
+
 ```
 [
   {
@@ -28,6 +29,7 @@ Retrieves a list of quotes
   ...
 ]
 ```
+
 </details>
 
 ### Random Quote
@@ -36,12 +38,14 @@ Retrieve a random quote
 **GET** `/quotes/random`
 <details>
 <summary>Example Response</summary>
+
 ```
 {
   "author": "Dalai Lama",
   "quote": "Happiness is not something readymade.  It comes from your own actions."
 }
 ```
+
 </details>
 
 ### n random Quotes
@@ -50,6 +54,7 @@ Retrieves a list of n random quotes where n is a whole number.
 **GET** `/quotes/random/<n>`
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
+
 ```
 [
   {
@@ -94,6 +99,7 @@ Retrieves a list of n random quotes where n is a whole number.
   }
 ]
 ```
+
 </details>
 
 ### Random Quote by Author
@@ -102,6 +108,7 @@ Retrieve a random quote by an Author's name
 **GET** `/quotes/author/<author-name>`
 <details>
 <summary>Example Response(`Albert` as <author\>)</summary>
+
 ```
 [
   {
@@ -114,6 +121,7 @@ Retrieve a random quote by an Author's name
   }
 ]
 ```
+
 </details>
 
 ## Jokes
@@ -124,6 +132,7 @@ Retrieves a list of jokes
 **GET** `/jokes`
 <details>
 <summary>Example Response</summary>
+
 ```
 [
   {
@@ -139,6 +148,7 @@ Retrieves a list of jokes
   ...
 ]
 ```
+
 </details>
 
 ### Random Joke
@@ -147,6 +157,7 @@ Retrieve a random jokes
 **GET** `/jokes/random`
 <details>
 <summary>Example Response</summary>
+
 ```
 [
   {
@@ -156,6 +167,7 @@ Retrieve a random jokes
   }
 ]
 ```
+
 </details>
 
 ### n Random Jokes
@@ -164,6 +176,7 @@ Retrieves a list of n random jokes where n is a whole number.
 **GET** /jokes/random/<n>
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
+
 ```
 [
   {
@@ -218,6 +231,7 @@ Retrieves a list of n random jokes where n is a whole number.
   }
 ]
 ```
+
 </details>
 
 ### All Jokes by Type
@@ -231,6 +245,7 @@ Retrieves a list of all jokes by type<br>
 **GET** `/jokes/<type>`
 <details>
 <summary>Example Response(`programming` as <type\n>)</summary>
+
 ```
 [
   {
@@ -365,6 +380,7 @@ Retrieves a list of all jokes by type<br>
   }
 ]
 ```
+
 </details>
 
 ### Random Joke by Type
@@ -377,6 +393,7 @@ The following types are available:
 *GET* `/jokes/<type>/random`
 <details>
 <summary>Example Response(`programming` as <type\n>)</summary>
+
 ```
 {
   "punchline": "Those who understand binary and those who don't",
@@ -384,6 +401,7 @@ The following types are available:
   "type": "programming"
 }
 ```
+
 </details>
 
 ### n random Jokes by Type
@@ -396,6 +414,7 @@ The following types are available:
 **GET** `/jokes/<type>/random/<n>`
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
+
 ```
 [
   {
@@ -450,6 +469,7 @@ The following types are available:
   }
 ]
 ```
+
 </details>
 
 ## Contribute to the API
