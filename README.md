@@ -15,9 +15,9 @@ https://jokes-and-quotes-api.herokuapp.com/
 
 ### ALL Quotes
 
-*Retrieves a list of quotes*
+_Retrieves a list of quotes_
 
-***GET*** `/quotes`
+**_GET_** <code>/quotes</code>
 
 <details>
 <summary>Example Response</summary>
@@ -40,9 +40,9 @@ https://jokes-and-quotes-api.herokuapp.com/
 
 ### Random Quote
 
-*Retrieve a random quote*
+_Retrieve a random quote_
 
-***GET*** `/quotes/random`
+**_GET_** <code>/quotes/random</code>
 
 <details>
 <summary>Example Response</summary>
@@ -58,14 +58,14 @@ https://jokes-and-quotes-api.herokuapp.com/
 
 ### n random Quotes
 
-*Retrieves a list of n random quotes where n is a whole number.*
+_Retrieves a list of n random quotes where n is a whole number._
 
-***GET*** `/quotes/random/<n>`
+**_GET_** <code>/quotes/random/<n></code>
 
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
 
-```
+<pre>
 [
   {
     "author": "Albert Einstein",
@@ -108,20 +108,20 @@ https://jokes-and-quotes-api.herokuapp.com/
     "quote": "If the wind will not serve, take to the oars."
   }
 ]
-```
+</pre>
 
 </details>
 
 ### Random Quote by Author
 
-*Retrieve a random quote by an Author's name*
+_Retrieve a random quote by an Author's name_
 
-***GET*** `/quotes/author/<author-name>`
+**_GET_** <code>/quotes/author/<author-name></code>
 
 <details>
 <summary>Example Response(`Albert` as <author\>)</summary>
 
-```
+<pre>
 [
   {
     "author": "Albert Einstein",
@@ -132,7 +132,7 @@ https://jokes-and-quotes-api.herokuapp.com/
     "quote": "Strive not to be a success, but rather to be of value."
   }
 ]
-```
+</pre>
 
 </details>
 
@@ -140,14 +140,14 @@ https://jokes-and-quotes-api.herokuapp.com/
 
 ### All Jokes
 
-*Retrieves a list of jokes*
+_Retrieves a list of jokes_
 
-***GET*** `/jokes`
+**_GET_** <code>/jokes</code>
 
 <details>
 <summary>Example Response</summary>
 
-```
+<pre>
 [
   {
     "punchline": "Dam.",
@@ -161,20 +161,20 @@ https://jokes-and-quotes-api.herokuapp.com/
   },
   ...
 ]
-```
+</pre>
 
 </details>
 
 ### Random Joke
 
-*Retrieve a random jokes*
+_Retrieve a random jokes_
 
-***GET*** `/jokes/random`
+**_GET_** <code>/jokes/random</code>
 
 <details>
 <summary>Example Response</summary>
 
-```
+<pre>
 [
   {
     "punchline": "They start coffin.",
@@ -182,20 +182,20 @@ https://jokes-and-quotes-api.herokuapp.com/
     "type": "general"
   }
 ]
-```
+</pre>
 
 </details>
 
 ### n Random Jokes
 
-*Retrieves a list of n random jokes where n is a whole number.*
+_Retrieves a list of n random jokes where n is a whole number._
 
-***GET*** `/jokes/random/<n>`
+**_GET_** <code>/jokes/random/<n></code>
 
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
 
-```
+<pre>
 [
   {
     "punchline": "A stick.",
@@ -248,26 +248,25 @@ https://jokes-and-quotes-api.herokuapp.com/
     "type": "general"
   }
 ]
-```
+</pre>
 
 </details>
 
 ### All Jokes by Type
 
-*Retrieves a list of all jokes by type*
+_Retrieves a list of all jokes by type_
 
 > The following types are available:
-
 > - `general`
 > - `programming`
 > - `knock-knock`
 
-***GET*** `/jokes/<type>`
+**_GET_** <code>/jokes/<type></code>
 
 <details>
 <summary>Example Response(`programming` as type )</summary>
 
-```
+<pre>
 [
   {
     "punchline": "Even if you're wrong, you're only off by a bit.",
@@ -400,51 +399,49 @@ https://jokes-and-quotes-api.herokuapp.com/
     "type": "programming"
   }
 ]
-```
+</pre>
 
 </details>
 
 ### Random Joke by Type
 
-*Retrieve a random joke by a type*
+_Retrieve a random joke by a type_
 
 > The following types are available:
->
 > - `general`
 > - `programming`
 > - `knock-knock`
 
-***GET*** `/jokes/<type>/random`
+**_GET_** <code>/jokes/<type>/random</code>
 
 <details>
 <summary>Example Response(`programming` as type)</summary>
 
-```
+<pre>
 {
   "punchline": "Those who understand binary and those who don't",
   "setup": "There are 10 types of people in this world...",
   "type": "programming"
 }
-```
+</pre>
 
 </details>
 
 ### n random Jokes by Type
 
-*Retrieves n random jokes by a type, where n is a whole number*
+_Retrieves n random jokes by a type, where n is a whole number_
 
 > The following types are available:
->
 > - `general`
 > - `programming`
 > - `knock-knock`
 
-***GET*** `/jokes/<type>/random/<n>`
+**_GET_** <code>/jokes/<type>/random/<n></code>
 
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
 
-```
+<pre>
 [
   {
     "punchline": "(hip hip array)",
@@ -497,7 +494,7 @@ https://jokes-and-quotes-api.herokuapp.com/
     "type": "programming"
   }
 ]
-```
+</pre>
 
 </details>
 
