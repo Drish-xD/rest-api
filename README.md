@@ -3,16 +3,22 @@
 This RESTful API lets you fetch jokes and quotes for use in all sorts of applications.
 It is written in [Python](https://www.python.org/), and uses [Flask](https://flask.palletsprojects.com/en/1.1.x/) as a web framework.
 
-# API Endpoints 
+## API Endpoints
 
-- API URL - `https://jokes-and-quotes-api.herokuapp.com/`
+**API URL:**
+
+```
+https://jokes-and-quotes-api.herokuapp.com/
+```
 
 ## Quotes
 
 ### ALL Quotes
-Retrieves a list of quotes
 
-**GET** `/quotes`
+*Retrieves a list of quotes*
+
+***GET*** `/quotes`
+
 <details>
 <summary>Example Response</summary>
 
@@ -33,9 +39,11 @@ Retrieves a list of quotes
 </details>
 
 ### Random Quote
-Retrieve a random quote
 
-**GET** `/quotes/random`
+*Retrieve a random quote*
+
+***GET*** `/quotes/random`
+
 <details>
 <summary>Example Response</summary>
 
@@ -49,9 +57,11 @@ Retrieve a random quote
 </details>
 
 ### n random Quotes
-Retrieves a list of n random quotes where n is a whole number.
 
-**GET** `/quotes/random/<n>`
+*Retrieves a list of n random quotes where n is a whole number.*
+
+***GET*** `/quotes/random/<n>`
+
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
 
@@ -103,9 +113,11 @@ Retrieves a list of n random quotes where n is a whole number.
 </details>
 
 ### Random Quote by Author
-Retrieve a random quote by an Author's name
 
-**GET** `/quotes/author/<author-name>`
+*Retrieve a random quote by an Author's name*
+
+***GET*** `/quotes/author/<author-name>`
+
 <details>
 <summary>Example Response(`Albert` as <author\>)</summary>
 
@@ -127,9 +139,11 @@ Retrieve a random quote by an Author's name
 ## Jokes
 
 ### All Jokes
-Retrieves a list of jokes
 
-**GET** `/jokes`
+*Retrieves a list of jokes*
+
+***GET*** `/jokes`
+
 <details>
 <summary>Example Response</summary>
 
@@ -152,9 +166,11 @@ Retrieves a list of jokes
 </details>
 
 ### Random Joke
-Retrieve a random jokes
 
-**GET** `/jokes/random`
+*Retrieve a random jokes*
+
+***GET*** `/jokes/random`
+
 <details>
 <summary>Example Response</summary>
 
@@ -171,9 +187,11 @@ Retrieve a random jokes
 </details>
 
 ### n Random Jokes
-Retrieves a list of n random jokes where n is a whole number.
 
-**GET** /jokes/random/<n>
+*Retrieves a list of n random jokes where n is a whole number.*
+
+***GET*** `/jokes/random/<n>`
+
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
 
@@ -235,16 +253,19 @@ Retrieves a list of n random jokes where n is a whole number.
 </details>
 
 ### All Jokes by Type
-Retrieves a list of all jokes by type<br>
-  The following types are available:
 
-  - `general`
-  - `programming`
-  - `knock-knock`
+*Retrieves a list of all jokes by type*
 
-**GET** `/jokes/<type>`
+> The following types are available:
+
+> - `general`
+> - `programming`
+> - `knock-knock`
+
+***GET*** `/jokes/<type>`
+
 <details>
-<summary>Example Response(`programming` as <type\n>)</summary>
+<summary>Example Response(`programming` as type )</summary>
 
 ```
 [
@@ -384,15 +405,19 @@ Retrieves a list of all jokes by type<br>
 </details>
 
 ### Random Joke by Type
-Retrieve a random joke by a type<br>
-The following types are available:
-- `general`
-- `programming`
-- `knock-knock`
 
-*GET* `/jokes/<type>/random`
+*Retrieve a random joke by a type*
+
+> The following types are available:
+>
+> - `general`
+> - `programming`
+> - `knock-knock`
+
+***GET*** `/jokes/<type>/random`
+
 <details>
-<summary>Example Response(`programming` as <type\n>)</summary>
+<summary>Example Response(`programming` as type)</summary>
 
 ```
 {
@@ -405,13 +430,17 @@ The following types are available:
 </details>
 
 ### n random Jokes by Type
-Retrieves n random jokes by a type, where n is a whole number<br>
-The following types are available:
-- `general`
-- `programming`
-- `knock-knock`
 
-**GET** `/jokes/<type>/random/<n>`
+*Retrieves n random jokes by a type, where n is a whole number*
+
+> The following types are available:
+>
+> - `general`
+> - `programming`
+> - `knock-knock`
+
+***GET*** `/jokes/<type>/random/<n>`
+
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
 
