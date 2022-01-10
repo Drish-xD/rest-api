@@ -36,7 +36,7 @@ _Retrieves a list of quotes_
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ### Random Quote
 
@@ -47,14 +47,14 @@ _Retrieve a random quote_
 <details>
 <summary>Example Response</summary>
 
-```
+<pre>
 {
   "author": "Dalai Lama",
   "quote": "Happiness is not something readymade.  It comes from your own actions."
 }
-```
+</pre>
 
-</details>
+</details> <br>
 
 ### n random Quotes
 
@@ -110,7 +110,7 @@ _Retrieves a list of n random quotes where n is a whole number._
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ### Random Quote by Author
 
@@ -134,7 +134,7 @@ _Retrieve a random quote by an Author's name_
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ## Jokes
 
@@ -163,7 +163,7 @@ _Retrieves a list of jokes_
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ### Random Joke
 
@@ -184,7 +184,7 @@ _Retrieve a random jokes_
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ### n Random Jokes
 
@@ -250,13 +250,14 @@ _Retrieves a list of n random jokes where n is a whole number._
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ### All Jokes by Type
 
 _Retrieves a list of all jokes by type_
 
 > The following types are available:
+>
 > - `general`
 > - `programming`
 > - `knock-knock`
@@ -401,13 +402,14 @@ _Retrieves a list of all jokes by type_
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ### Random Joke by Type
 
 _Retrieve a random joke by a type_
 
 > The following types are available:
+>
 > - `general`
 > - `programming`
 > - `knock-knock`
@@ -425,13 +427,14 @@ _Retrieve a random joke by a type_
 }
 </pre>
 
-</details>
+</details> <br>
 
 ### n random Jokes by Type
 
 _Retrieves n random jokes by a type, where n is a whole number_
 
 > The following types are available:
+>
 > - `general`
 > - `programming`
 > - `knock-knock`
@@ -496,7 +499,7 @@ _Retrieves n random jokes by a type, where n is a whole number_
 ]
 </pre>
 
-</details>
+</details> <br>
 
 ## Contribute to the API
 
