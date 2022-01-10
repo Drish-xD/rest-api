@@ -22,7 +22,7 @@ https://jokes-and-quotes-api.herokuapp.com/
 <details>
 <summary>Example Response</summary>
 
-```
+<pre>
 [
   {
     "author": "Albert Einstein",
@@ -34,7 +34,7 @@ https://jokes-and-quotes-api.herokuapp.com/
   },
   ...
 ]
-```
+</pre>
 
 </details>
 
