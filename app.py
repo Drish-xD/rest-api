@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def hello_world():
-    return redirect("https://github.com/Drish-xD/rest-api")
+    return redirect("https://drish-xd.is-a.dev/rest-api/")
 
 
 # Quotes API
