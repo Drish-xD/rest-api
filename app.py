@@ -67,7 +67,6 @@ def jokes():
 def random_joke():
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
-    return json.dumps(random.choice(jokes), indent=2, mimetype="application/json")
     return jsonify(random.choice(jokes))
     file.close()
 
