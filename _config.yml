@@ -1,1 +1,4 @@
 theme: jekyll-theme-minimal
+title: Quotes and Jokes API Documentation
+description: This API lets you fetch jokes and quotes for use in all sorts of applications. It is written in Python, and uses Flask as a web framework.
+show_downloads: true
