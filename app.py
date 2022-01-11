@@ -19,7 +19,7 @@ db = SQLAlchemy(app)
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     public_id = db.Column(db.String(50), unique=True)
-    name = db.Column(db.String(100), nullable=False)
+    user_name = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -41,32 +41,42 @@ def token_required(f):
     @wraps(f)
     def decorator(*args, **kwargs):
         token = None
-        if 'x-access-tokens' in request.headers:
-            token = request.headers['x-access-takens']
+        if 'token' in request.headers:
+            token_h = request.headers['token']
 
-        if not token:
+        if not token_h:
             return jsonify({'message': 'Token is missing'}), 401
 
         try:
-            data = jwt.decode(token, app.config[Secret_Key])
+            data = jwt.decode(token_h, app.config['Secret_Key'], algorithms=['HS256'])
             current_user = Users.query.filter_by(
                 public_id=data['public_id']).first()
+            # return data['public_id']
 
         except:
-            return jsonify({'message': 'token is invalid'}), 401
+            return jsonify({'message': 'Token is invalid'}), 401
         return f(current_user, *args, **kwargs)
     return decorator
 
 
 @app.route('/register', methods=['POST'])
 def register():
-    data = request.get_json()
+    data = request.form
+
     hashed_password = generate_password_hash(data['password'], method='sha256')
-    new_user = Users(public_id=str(uuid.uuid4()),
-                     name=data['name'], password=hashed_password)
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({'message': 'User created successfully'})
+    user = Users.query.filter_by(user_name=data['username']).first()
+
+    if not user:
+        new_user = Users(
+            public_id=str(uuid.uuid4()),
+            user_name=data['username'],
+            password=hashed_password
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return make_response('Successfully Created User', 201)
+    else:
+        return make_response('User already exists', 202)
 
 
 @app.route('/login', methods=['POST'])
@@ -74,24 +84,43 @@ def login():
     auth = request.authorization
 
     if not auth or not auth.username or not auth.password:
-        return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required"'})
-    user = Users.query.filter_by(name=auth.username).first()
+        return make_response(
+            'Could not verify', 401,
+            {'WWW-Authenticate': 'Basic realm="Login required!!!"'}
+        )
+    user = Users.query.filter_by(user_name=auth.username).first()
+
+    if not user:
+        return make_response(
+            'Could not verify', 401,
+            {'WWW-Authenticate': 'Basic realm="User Not Exist!!!"'}
+        )
 
     if check_password_hash(user.password, auth.password):
-        token = jwt.encode({'public_id': user.public_id, 'exp': datetime.utcnow(
-        ) + timedelta(minutes=30)}, app.config['Secret_Key'])
-        return jsonify({'token': token})
-    return make_response('Could not verify', 401, {'WWW-Authenticate': 'Basic realm="Login required"'})
+        token = jwt.encode({
+            'public_id': user.public_id,
+            'exp': datetime.utcnow() + timedelta(minutes=30)
+        }, app.config['Secret_Key'])
+
+        return make_response(jsonify({
+            'token': token
+        }), 201)
+
+    return make_response(
+        'Could not verify', 403,
+        {'WWW-Authenticate': 'Basic realm="Wrong Password!!!"'}
+    )
 
 
 @app.route('/users', methods=['GET'])
+@token_required
 def get_all_users(current_user):
     users = Users.query.all()
     output = []
     for user in users:
         user_data = {}
         user_data['public_id'] = user.public_id
-        user_data['name'] = user.name
+        user_data['name'] = user.user_name
         user_data['created_at'] = user.created_at
         output.append(user_data)
     return jsonify({'users': output})
@@ -106,7 +135,7 @@ def hello_world():
 
 @app.route("/quotes", methods=['GET'])
 @token_required
-def quotes():
+def quotes(current_user):
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
     return jsonify(quotes)
@@ -117,7 +146,7 @@ def quotes():
 
 @app.route("/quotes/random", methods=['GET'])
 @token_required
-def random_quote():
+def random_quote(current_user):
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
     return jsonify(random.choice(quotes))
@@ -128,7 +157,7 @@ def random_quote():
 
 @app.route("/quotes/random/<int:n>", methods=['GET'])
 @token_required
-def random_quotes(n):
+def random_quotes(current_user, n):
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
     return jsonify(random.choices(quotes, k=n))
@@ -139,7 +168,7 @@ def random_quotes(n):
 
 @app.route("/quotes/author/<string:author>", methods=['GET'])
 @token_required
-def quotes_author(author):
+def quotes_author(current_user, author):
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
     quotes_author = [x for x in quotes if author in x["author"]
@@ -152,7 +181,7 @@ def quotes_author(author):
 
 @app.route("/jokes", methods=['GET'])
 @token_required
-def jokes():
+def jokes(current_user):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     return jsonify(jokes)
@@ -163,7 +192,7 @@ def jokes():
 
 @app.route("/jokes/random", methods=['GET'])
 @token_required
-def random_joke():
+def random_joke(current_user):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     return jsonify(random.choice(jokes))
@@ -174,7 +203,7 @@ def random_joke():
 
 @app.route("/jokes/random/<int:n>", methods=['GET'])
 @token_required
-def random_jokes(n):
+def random_jokes(current_user, n):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     return jsonify(random.choices(jokes, k=n))
@@ -185,7 +214,7 @@ def random_jokes(n):
 
 @app.route("/jokes/<string:type>", methods=['GET'])
 @token_required
-def jokes_by_type(type):
+def jokes_by_type(current_user, type):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     jokes_list = [x for x in jokes if x['type'] == type]
@@ -197,7 +226,7 @@ def jokes_by_type(type):
 
 @app.route("/jokes/<string:type>/random", methods=['GET'])
 @token_required
-def random_joke_by_type(type):
+def random_joke_by_type(current_user, type):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     mature_jokes = [x for x in jokes if x['type'] == type]
@@ -209,7 +238,7 @@ def random_joke_by_type(type):
 
 @app.route("/jokes/<string:type>/random/<int:n>", methods=['GET'])
 @token_required
-def random_jokes_by_type(type, n):
+def random_jokes_by_type(current_user, type, n):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     mature_jokes = [x for x in jokes if x['type'] == type]
@@ -218,4 +247,4 @@ def random_jokes_by_type(type, n):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
