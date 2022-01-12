@@ -3,14 +3,15 @@ from flask import Flask, jsonify, redirect, json, request, make_response
 from datetime import datetime, timedelta
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
+import psycopg2
 import random
 import uuid
 import jwt
-
+import os
 
 app = Flask(__name__)
-app.config['Secret_Key'] = 'secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Data/storage.db'
+app.config['Secret_Key'] = os.environ['Secret_Key']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)
@@ -51,7 +52,6 @@ def token_required(f):
             data = jwt.decode(token_h, app.config['Secret_Key'], algorithms=['HS256'])
             current_user = Users.query.filter_by(
                 public_id=data['public_id']).first()
-            # return data['public_id']
 
         except:
             return jsonify({'message': 'Token is invalid'}), 401
