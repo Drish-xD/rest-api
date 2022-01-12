@@ -10,8 +10,8 @@ import jwt
 import os
 
 app = Flask(__name__)
-app.config['Secret_Key'] = os.environ['Secret_Key']
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['Secret_Key'] = "fefwefwfwefwefwfecewf"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://onoibxyrccrbwi:27ad822acc80c76528833ecef22c039f363fb4bb5403a40bf69701daa3717268@ec2-3-225-41-234.compute-1.amazonaws.com:5432/d5sfp8tdjhe37l"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)
