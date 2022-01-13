@@ -36,7 +36,7 @@ def token_required(f):
 
 
 @auth.route('/register', methods=['POST'])
-def register():
+def register_user():
     data = request.form
 
     hashed_password = generate_password_hash(data['password'], method='sha256')
@@ -56,7 +56,7 @@ def register():
 
 
 @auth.route('/login', methods=['POST'])
-def login():
+def login_user():
     auth = request.authorization
 
     if not auth or not auth.username or not auth.password:
