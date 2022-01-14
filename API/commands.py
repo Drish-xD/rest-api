@@ -7,4 +7,4 @@ from .model import db, Users
 @with_appcontext
 def create_db():
     db.create_all()
-    return 'Database created!'
+    print('Database created!')
