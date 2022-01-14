@@ -1,6 +1,6 @@
 from flask import Flask
 
-from API.commands import create_db
+from API.commands import create_db, drop_db
 from API.model import Users, db
 from API.routes.auth import auth
 from API.routes.jokes import jokes
@@ -17,5 +17,6 @@ def create_app(config_file="settings.py"):
     app.register_blueprint(jokes)
 
     app.cli.add_command(create_db)
+    app.cli.add_command(drop_db)
 
     return app
