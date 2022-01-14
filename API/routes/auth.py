@@ -73,8 +73,13 @@ def login_user():
         )
 
     if check_password_hash(user.password, auth_user.password):
-        token = jwt.encode({'public_id': user.public_id, 'exp': datetime.utcnow() + timedelta(minutes=30)}, SECRET_KEY, algorithm='HS256')
-
+        payload = {
+            'public_id': user.public_id,
+            'exp': datetime.utcnow() + timedelta(minutes=30)
+        }
+        secret= str(SECRET_KEY)
+        token = jwt.encode(payload, secret)
+        print("token:" , secret, type(secret))
         return make_response(jsonify({
             'token': token
         }), 201)
