@@ -16,8 +16,8 @@ def hello_world():
 def quotes():
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
-    return jsonify(quotes)
     file.close()
+    return jsonify(quotes)
 
 
 # Get a random quote
@@ -26,8 +26,8 @@ def quotes():
 def random_quote():
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
-    return jsonify(random.choice(quotes))
     file.close()
+    return jsonify(random.choice(quotes))
 
 
 # Get n random quotes
@@ -36,8 +36,8 @@ def random_quote():
 def random_quotes(n):
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
-    return jsonify(random.choices(quotes, k=n))
     file.close()
+    return jsonify(random.choices(quotes, k=n))
 
 
 # Seach Quotes by Author
@@ -47,8 +47,8 @@ def quotes_author(author):
     file = open("./Data/quotes.json", "r", encoding="utf8")
     quotes = json.load(file)
     quotes_author = [x for x in quotes if author in x["author"] or author in x["author"].lower() or author in x["author"].upper()]
-    return jsonify(quotes_author)
     file.close()
+    return jsonify(quotes_author)
 
 
 # Jokes API
@@ -57,8 +57,8 @@ def quotes_author(author):
 def jokes():
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
-    return jsonify(jokes)
     file.close()
+    return jsonify(jokes)
 
 
 # Get a random joke
@@ -67,8 +67,8 @@ def jokes():
 def random_joke():
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
-    return jsonify(random.choice(jokes))
     file.close()
+    return jsonify(random.choice(jokes))
 
 
 # Get n random jokes
@@ -77,8 +77,8 @@ def random_joke():
 def random_jokes(n):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
-    return jsonify(random.choices(jokes, k=n))
     file.close()
+    return jsonify(random.choices(jokes, k=n))
 
 
 # Seach Jokes by Type
@@ -88,8 +88,8 @@ def jokes_by_type(type):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     jokes_list = [x for x in jokes if x['type'] == type]
-    return jsonify(jokes_list)
     file.close()
+    return jsonify(jokes_list)
 
 
 # Get a random joke by type
@@ -99,8 +99,8 @@ def random_joke_by_type(type):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     mature_jokes = [x for x in jokes if x['type'] == type]
-    return jsonify(random.choice(mature_jokes))
     file.close()
+    return jsonify(random.choice(mature_jokes))
 
 
 # Get n random jokes by type
@@ -110,8 +110,8 @@ def random_jokes_by_type(type, n):
     file = open("./Data/jokes.json", "r", encoding="utf8")
     jokes = json.load(file)
     mature_jokes = [x for x in jokes if x['type'] == type]
-    return jsonify(random.choices(mature_jokes, k=n))
     file.close()
+    return jsonify(random.choices(mature_jokes, k=n))
 
 
 if __name__ == '__main__':
