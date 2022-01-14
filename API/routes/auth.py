@@ -4,7 +4,7 @@ from functools import wraps
 
 import jwt
 from API.model import Users, db
-from API.settings import SECRET_KEY
+# from API.settings import SECRET_KEY
 from flask import Blueprint, Flask, jsonify, make_response, redirect, request
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -26,7 +26,7 @@ def token_required(f):
             return jsonify({'message': 'Token is missing'}), 401
 
         try:
-            data = jwt.decode(token_h, SECRET_KEY, algorithms=['HS256'])
+            data = jwt.decode(token_h, "SECRET_KEY", algorithms=['HS256'])
             current_user = Users.query.filter_by(public_id=data['public_id']).first()
 
         except:
@@ -57,14 +57,14 @@ def register_user():
 
 @auth.route('/login', methods=['POST'])
 def login_user():
-    auth = request.authorization
+    auth_user = request.authorization
 
-    if not auth or not auth.username or not auth.password:
+    if not auth_user or not auth_user.username or not auth_user.password:
         return make_response(
             'Could not verify', 401,
             {'WWW-Authenticate': 'Basic realm="Login required!!!"'}
         )
-    user = Users.query.filter_by(user_name=auth.username).first()
+    user = Users.query.filter_by(user_name=auth_user.username).first()
 
     if not user:
         return make_response(
@@ -72,8 +72,8 @@ def login_user():
             {'WWW-Authenticate': 'Basic realm="User Not Exist!!!"'}
         )
 
-    if check_password_hash(user.password, auth.password):
-        token = jwt.encode({'public_id': user.public_id, 'exp': datetime.utcnow() + timedelta(minutes=30)}, SECRET_KEY, algorithm='HS256')
+    if check_password_hash(user.password, auth_user.password):
+        token = jwt.encode({'public_id': user.public_id, 'exp': datetime.utcnow() + timedelta(minutes=30)}, "SECRET_KEY", algorithm='HS256')
 
         return make_response(jsonify({
             'token': token
