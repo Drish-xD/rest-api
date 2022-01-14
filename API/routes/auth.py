@@ -4,7 +4,7 @@ from functools import wraps
 
 import jwt
 from API.model import Users, db
-from API.settings import SECRET_KEY
+# from API.settings import SECRET_KEY
 from flask import Blueprint, Flask, jsonify, make_response, redirect, request
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -26,7 +26,7 @@ def token_required(f):
             return jsonify({'message': 'Token is missing'}), 401
 
         try:
-            data = jwt.decode(token_h, SECRET_KEY, algorithms=['HS256'])
+            data = jwt.decode(token_h, "SECRET_KEY", algorithms=['HS256'])
             current_user = Users.query.filter_by(public_id=data['public_id']).first()
 
         except:
