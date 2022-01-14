@@ -1,15 +1,60 @@
 # Quotes And Jokes Restful API
 
 This RESTful API lets you fetch jokes and quotes for use in all sorts of applications.
-It is written in [Python](https://www.python.org/), and uses [Flask](https://flask.palletsprojects.com/en/1.1.x/) as a web framework.
+It has a basic authentication system to prevent unauthorized access.
+It is written in [Python](https://www.python.org/) and uses [Flask](https://flask.palletsprojects.com/en/1.1.x/) as a web framework and [PostgreSQL](https://www.postgresql.org/) as a database. It is hosted on [Heroku](https://www.heroku.com/).
 
 ## API Endpoints
 
 **API URL:**
 
+You can test the API by sending a request to the following endpoint:
+
 ```
 https://jokes-and-quotes-api.herokuapp.com/
 ```
+
+## Basic Authentication
+
+### Register
+
+_Register for an account_
+
+**_POST_** <code>/register</code>
+
+Select form:
+
+* **username**: The username of the user.
+* **password**: The password of the user.
+
+<details>
+<summary>Example Response</summary>
+
+<pre>
+  Successfully Created User
+</pre>
+
+</details> <br>
+
+### Login
+
+_Login to your account_
+
+**_POST_** <code>/login</code>
+
+Select Basic Authentication:
+
+<details>
+<summary>Example Response</summary>
+
+<pre>
+  {
+    "token": "random-token-will-be-generated-by-the-server"
+}
+</pre>
+
+</details> <br>
+> Now you can use the token in the Authorization header of all your requests. 
 
 ## Quotes
 
@@ -60,7 +105,7 @@ _Retrieve a random quote_
 
 _Retrieves a list of n random quotes where n is a whole number._
 
-**_GET_** <code>/quotes/random/<n></code>
+**_GET_** <code>/quotes/random/<n\></code>
 
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
@@ -116,7 +161,7 @@ _Retrieves a list of n random quotes where n is a whole number._
 
 _Retrieve a random quote by an Author's name_
 
-**_GET_** <code>/quotes/author/<author-name></code>
+**_GET_** <code>/quotes/author/<author-name\></code>
 
 <details>
 <summary>Example Response(`Albert` as <author\>)</summary>
@@ -190,7 +235,7 @@ _Retrieve a random jokes_
 
 _Retrieves a list of n random jokes where n is a whole number._
 
-**_GET_** <code>/jokes/random/<n></code>
+**_GET_** <code>/jokes/random/<n\></code>
 
 <details>
 <summary>Example Response(`10` as <n\>)</summary>
@@ -262,7 +307,7 @@ _Retrieves a list of all jokes by type_
 > - `programming`
 > - `knock-knock`
 
-**_GET_** <code>/jokes/<type></code>
+**_GET_** <code>/jokes/<type\></code>
 
 <details>
 <summary>Example Response(`programming` as type )</summary>
@@ -414,7 +459,7 @@ _Retrieve a random joke by a type_
 > - `programming`
 > - `knock-knock`
 
-**_GET_** <code>/jokes/<type>/random</code>
+**_GET_** <code>/jokes/<type\>/random</code>
 
 <details>
 <summary>Example Response(`programming` as type)</summary>
@@ -439,10 +484,10 @@ _Retrieves n random jokes by a type, where n is a whole number_
 > - `programming`
 > - `knock-knock`
 
-**_GET_** <code>/jokes/<type>/random/<n></code>
+**_GET_** <code>/jokes/<type\>/random/<n\></code>
 
 <details>
-<summary>Example Response(`10` as <n\>)</summary>
+<summary>Example Response(`10` as <n\> )</summary>
 
 <pre>
 [
@@ -504,8 +549,10 @@ _Retrieves n random jokes by a type, where n is a whole number_
 ## Contribute to the API
 
 - Fork the repository on [GitHub](https://github.com/Drish-xD/rest-api)
-- Add your own joke or quote to the database. `./Data/jokes.json` or `./Data/quotes.json`
+- Add your own joke or quote to the database. `./API/Data/jokes.json` or `./API/Data/quotes.json`
 - Make a pull request.
+
+> Also, feel free to report any issues or suggestions.
 
 ## References
 
